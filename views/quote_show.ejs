@@ -2,7 +2,7 @@
 <div class="container">
     <h1>Edit Quote</h1>
 
-    <form>
+    <form method="post" action="/quotes/<%= quoteObj.id %>">
     <div class="form-group">
       <div style="width: 20em;">
         <input
@@ -10,7 +10,7 @@
           type="text"
           name="quote"
           id="quote"
-          value="">
+          value="<%= quoteObj.quote %>">
       </div>
       
 

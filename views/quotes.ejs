@@ -5,41 +5,40 @@
 
       <div class="accordion" id="quote-list">
         
+        <% for (const quoteId in quoteList) { %> 
+
         <div class="card">
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#d9424e04" aria-expanded="true" aria-controls="collapseTwo">
-                Why so serious?
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= quoteId %>" aria-expanded="true" aria-controls="collapseTwo">
+                <%= quoteList[quoteId].quote %> 
               </button>
             </h5>
 
             <span>
-              <form><input type="submit" class="btn btn-secondary btn-sm" value="Edit"></form>
+              <form method="GET" action="/quotes/<%= quoteId %>"><input type="submit" class="btn btn-secondary btn-sm" value="Edit"></form>
               <form><input type="submit" class="btn btn-secondary btn-sm" value="Delete"></form>
             </span>
 
           </div>
-          <div id="d9424e04" class="collapse in" aria-labelledby="headingTwo" data-parent="#quote-list" aria-expanded="true" style="">
+          <div id="<%= quoteId %>" class="collapse in" aria-labelledby="headingTwo" data-parent="#quote-list" aria-expanded="true" style="">
             <div class="card-body">
               <h4>Comments</h4>
 
               <ul class="list-group">
                 
+                <% for (const commentObj of quoteList[quoteId].comments) { %>
+
                 <li class="list-group-item">
-                  So awesome comment! 
+                  <%= commentObj.comment %>
                   <span>
                     <form><input type="submit" class="btn btn-secondary btn-sm" value="Edit"></form>
                       <form><input type="submit" class="btn btn-secondary btn-sm" value="Delete"></form>
                     </span>
                 </li>
+
+                <% } %>
                 
-                <li class="list-group-item">
-                  Hey Bob! 
-                  <span>
-                    <form><input type="submit" class="btn btn-secondary btn-sm" value="Edit"></form>
-                      <form><input type="submit" class="btn btn-secondary btn-sm" value="Delete"></form>
-                    </span>
-                </li>
                 
               </ul>
 
@@ -47,7 +46,7 @@
             </div>
           </div>
         </div>
-      
+      <% } %>
       </div>
       <a href="" class="btn btn-primary">Add Quote</a>
     </div>
